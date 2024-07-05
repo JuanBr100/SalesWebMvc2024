@@ -15,6 +15,8 @@ builder.Services.AddDbContext<SalesWebMvcContext>(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<SeedingService>();
 builder.Services.AddTransient<SellerService>();
+builder.Services.AddTransient<DepartmentService>();
+
 
 var app = builder.Build();
 
@@ -37,6 +39,8 @@ else
 
         // Adicionar mais inicializações se necessário
         var sellerService = services.GetRequiredService<SellerService>();
+        var departmentService = services.GetRequiredService<DepartmentService>();
+
         // Chame métodos de inicialização no sellerService, se houver
     }
 }
