@@ -3,6 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using SalesWebMvc.Data;
 using SalesWebMvc.Services;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using System.Globalization;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,8 +19,20 @@ builder.Services.AddTransient<SeedingService>();
 builder.Services.AddTransient<SellerService>();
 builder.Services.AddTransient<DepartmentService>();
 
+var enUs = new CultureInfo("en-US");
+var localizationOption = new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture(enUs),
+    SupportedCultures = new List<CultureInfo> { enUs }
+};
+
+
+
 
 var app = builder.Build();
+
+
+app.UseRequestLocalization(localizationOption);
 
 // Configurar o pipeline de requisição HTTP
 if (!app.Environment.IsDevelopment())
