@@ -18,6 +18,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<SeedingService>();
 builder.Services.AddTransient<SellerService>();
 builder.Services.AddTransient<DepartmentService>();
+builder.Services.AddTransient<SalesRecordService>();
+
 
 var enUs = new CultureInfo("en-US");
 var localizationOption = new RequestLocalizationOptions
